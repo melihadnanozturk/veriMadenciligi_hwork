@@ -14,7 +14,7 @@ csvName = 'Sleep_health_and_lifestyle_dataset.csv';
 df = datas.get_data(path, csvName);
 
 # NULL KONTROLU
-#print(df.isnull())
+# print(df.isnull())
 
 # COLON SUTUN GRAFIGI OLUSTURUYORUZ
 graphics.createSutunGraphics(df, 'Quality of Sleep', 'Quality Of Sleep Dağılımı');
@@ -57,7 +57,7 @@ graphics.create_elbow_graphics_for_kmeans(df)
 graphics.create_elbow_graphics_for_kmmodes(df)
 graphics.create_elbow_graphics_for_kprototypes(df, categorical=[1, 3, 8, 11])
 
-#print(df)
+# print(df)
 
 ##   -----------************----------   KMODES ALGORITMASI  -----------************----------
 data_for_kmodes = df.copy()
@@ -76,7 +76,6 @@ graphics.create_cluster_graphics(pca_result=pca_kmeans, clusters=clusters_kmeans
 silhouette_score_kmeans = silhouette_score(data_for_kmeans, clusters_kmeans)
 print("silhouette_score_kmeans : ", silhouette_score_kmeans)
 
-
 ##   -----------************----------   KPROTOTYPES ALGORITMASI  -----------************----------
 data_for_kprototpyes = df.copy()
 categorical = [1, 3, 8, 11]
@@ -91,7 +90,7 @@ print("silhouette_score_kprototpyes : ", silhouette_score_kprototpyes)
 
 ##   -----------************----------   KMODES ALGORITMASI  -----------************----------
 data_for_kmodes_wout = df_wout_categories.copy()
-clusters_kmodes_wout = algorithms.k_modes(data=data_for_kmodes_wout, clusterNumber=4)
+clusters_kmodes_wout = algorithms.k_modes(data=data_for_kmodes_wout, clusterNumber=5)
 pca_kmodes_wout = pca.fit_transform(data_for_kmodes_wout)
 # kmodes pca ile grafik haline getirme / performans ölçümü
 graphics.create_cluster_graphics(pca_result=pca_kmodes_wout, clusters=clusters_kmodes_wout,
@@ -101,20 +100,15 @@ print("silhouette_score_kmodes_wout : ", silhouette_score_kmodes_wout)
 
 ##   -----------************----------   KMEANS ALGORITMASI  -----------************----------
 data_for_kmeans_wout = df_wout_categories.copy()
-clusters_kmeans_wout = algorithms.k_means(data=data_for_kmeans_wout, clusterNumber=4)
+clusters_kmeans_wout = algorithms.k_means(data=data_for_kmeans_wout, clusterNumber=5)
 pca_kmeans_wout = pca.fit_transform(data_for_kmeans_wout)
 graphics.create_cluster_graphics(pca_result=pca_kmeans_wout, clusters=clusters_kmeans_wout,
                                  title="KMEANS WOUT CATEGORY CLUSTERS")
 silhouette_score_kmeans_wout = silhouette_score(data_for_kmeans_wout, clusters_kmeans_wout)
 print("silhouette_score_kmeans_wout : ", silhouette_score_kmeans_wout)
 
-
 # data_for_kprototpyes_wout = df_wout_categories.copy();
 # categorical = [1, 3, 8, 11]
 # clusters_kprototypes_wout = algorithms.k_prototypes(data=data_for_kprototpyes_wout, dataCategorical=None, clusterNumber=5)
 # pca_kprototypes_wout = pca.fit_transform(clusters_kprototypes_wout)
 # graphics.create_cluster_graphics(pca_result=pca_kprototypes_wout,clusters=clusters_kprototypes_wout, title="KPROTOTYPES WOUT CATEGORY CLUSTERS")
-
-
-
-

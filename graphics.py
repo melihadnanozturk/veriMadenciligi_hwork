@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
+
 sns.set()
 from kmodes.kmodes import KModes
 from kmodes.kprototypes import KPrototypes
-
 
 
 def createSutunGraphics(data, column, title):
@@ -23,6 +23,7 @@ def createSutunGraphics(data, column, title):
     plt.xticks(rotation=45)
     plt.show()
 
+
 def createPieChart(data, column):
     tekrarlar = data[column].value_counts()
 
@@ -36,13 +37,15 @@ def createPieChart(data, column):
     plt.axis('equal')  # Dairesel şeklin korunması için
     plt.show()
 
-def create_cluster_graphics(pca_result,clusters, title):
+
+def create_cluster_graphics(pca_result, clusters, title):
     plt.scatter(pca_result[:, 0], pca_result[:, 1], c=clusters, cmap='viridis')
     plt.xlabel('Principal Component 1')
     plt.ylabel('Principal Component 2')
     plt.title(title)
     plt.colorbar(label='Cluster')
     plt.show()
+
 
 def create_elbow_graphics_for_kmeans(data):
     cluster_numbers = range(1, 11)
@@ -61,6 +64,7 @@ def create_elbow_graphics_for_kmeans(data):
     plt.title('Elbow Method for KMeans')
     plt.show()
 
+
 def create_elbow_graphics_for_kmmodes(data):
     cluster_numbers = range(1, 11)
     cost_values = []
@@ -78,7 +82,8 @@ def create_elbow_graphics_for_kmmodes(data):
     plt.title('Elbow Method for KModes')
     plt.show()
 
-def create_elbow_graphics_for_kprototypes(data,categorical):
+
+def create_elbow_graphics_for_kprototypes(data, categorical):
     cluster_numbers = range(1, 11)
     cost_values = []
 
@@ -94,4 +99,3 @@ def create_elbow_graphics_for_kprototypes(data,categorical):
     plt.ylabel('Cost')
     plt.title('Elbow Method for KPrototypes')
     plt.show()
-
